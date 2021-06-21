@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>PHP[入门]P01~06html - 吱~</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吱~"><meta name="msapplication-TileImage" content="/images/theme/simple-favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吱~"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。     B&amp;#x2F;S和C&amp;#x2F;S的简单认识 网页的工作原理 认识标签 全局架构标签 body常用属性 字体修饰标记(如下都是双边标记) 排版标记   实体符号 无序列表 自定义列表   HTML再认识 URL 超链接 图片img 音频 视频 表格   CSS初认识 CSS 使用css的好处"><meta property="og:type" content="blog"><meta property="og:title" content="吱"><meta property="og:url" content="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P01~06html/"><meta property="og:site_name" content="吱"><meta property="og:description" content="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。     B&amp;#x2F;S和C&amp;#x2F;S的简单认识 网页的工作原理 认识标签 全局架构标签 body常用属性 字体修饰标记(如下都是双边标记) 排版标记   实体符号 无序列表 自定义列表   HTML再认识 URL 超链接 图片img 音频 视频 表格   CSS初认识 CSS 使用css的好处"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hzjoyous.github.io/images/theme/avatar2.jpg"><meta property="article:published_time" content="2017-01-01T01:01:01.000Z"><meta property="article:modified_time" content="2021-06-16T06:16:58.863Z"><meta property="article:author" content="nil"><meta property="article:tag" content="php"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/theme/avatar2.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P01~06html/"},"headline":"吱~","image":["https://hzjoyous.github.io/img/og_image.png"],"datePublished":"2017-01-01T01:01:01.000Z","dateModified":"2021-06-16T06:16:58.863Z","author":{"@type":"Person","name":"hzjoyous"},"description":"这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&#x2F;05&#x2F;06年从有道笔记导出至此。     B&#x2F;S和C&#x2F;S的简单认识 网页的工作原理 认识标签 全局架构标签 body常用属性 字体修饰标记(如下都是双边标记) 排版标记   实体符号 无序列表 自定义列表   HTML再认识 URL 超链接 图片img 音频 视频 表格   CSS初认识 CSS 使用css的好处"}</script><link rel="canonical" href="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P01~06html/"><link rel="icon" href="/images/theme/simple-favicon.svg"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Join Gitter" href="https://gitter.im/hexo-theme-amazing/community"><i class="fab fa-gitter"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2017-01-01  <a class="commentCountImg" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P01~06html/#comment-container"><span class="display-none-class">1da94ec3f34f386d274bddb0437667eb</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="1da94ec3f34f386d274bddb0437667eb">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>26 分钟  <i class="fas fa-pencil-alt"> </i>4.0 k</span></div></div><h1 class="title is-3 is-size-4-mobile">PHP[入门]P01~06html</h1><div class="content"><blockquote>
+<p>这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020/05/06年从有道笔记导出至此。</p>
+</blockquote>
+<!-- TOC -->
+
+<ul>
+<li><a href="#bs%E5%92%8Ccs%E7%9A%84%E7%AE%80%E5%8D%95%E8%AE%A4%E8%AF%86">B/S和C/S的简单认识</a></li>
+<li><a href="#%E7%BD%91%E9%A1%B5%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">网页的工作原理</a></li>
+<li><a href="#%E8%AE%A4%E8%AF%86%E6%A0%87%E7%AD%BE">认识标签</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E6%9E%B6%E6%9E%84%E6%A0%87%E7%AD%BE">全局架构标签</a><ul>
+<li><a href="#body%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7">body常用属性</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93%E4%BF%AE%E9%A5%B0%E6%A0%87%E8%AE%B0%E5%A6%82%E4%B8%8B%E9%83%BD%E6%98%AF%E5%8F%8C%E8%BE%B9%E6%A0%87%E8%AE%B0">字体修饰标记(如下都是双边标记)</a><ul>
+<li><a href="#%E6%8E%92%E7%89%88%E6%A0%87%E8%AE%B0">排版标记</a></li>
+</ul>
+</li>
+<li><a href="#%E5%AE%9E%E4%BD%93%E7%AC%A6%E5%8F%B7">实体符号</a></li>
+<li><a href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8">无序列表</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%97%E8%A1%A8">自定义列表</a></li>
+</ul>
+</li>
+<li><a href="#html%E5%86%8D%E8%AE%A4%E8%AF%86">HTML再认识</a><ul>
+<li><a href="#url">URL</a></li>
+<li><a href="#%E8%B6%85%E9%93%BE%E6%8E%A5">超链接</a></li>
+<li><a href="#%E5%9B%BE%E7%89%87img">图片img</a></li>
+<li><a href="#%E9%9F%B3%E9%A2%91-%E8%A7%86%E9%A2%91">音频 视频</a></li>
+<li><a href="#%E8%A1%A8%E6%A0%BC">表格</a></li>
+</ul>
+</li>
+<li><a href="#css%E5%88%9D%E8%AE%A4%E8%AF%86">CSS初认识</a><ul>
+<li><a href="#css">CSS</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8css%E7%9A%84%E5%A5%BD%E5%A4%84">使用css的好处</a></li>
+<li><a href="#css%E7%9A%84%E4%B8%89%E7%A7%8D%E9%93%BE%E6%8E%A5%E6%96%B9%E5%BC%8F">css的三种链接方式</a><ul>
+<li><a href="#%E8%A1%8C%E5%86%85%E6%A0%B7%E5%BC%8F">行内样式</a></li>
+<li><a href="#%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F">内联样式</a></li>
+<li><a href="#%E5%A4%96%E9%83%A8%E6%A0%B7%E5%BC%8F">外部样式</a></li>
+</ul>
+</li>
+<li><a href="#css%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F%E5%92%8C%E6%B3%A8%E9%87%8A">css语法格式和注释</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E5%99%A8">选择器</a></li>
+<li><a href="#%E5%B0%BA%E5%AF%B8%E8%AE%BE%E7%BD%AE">尺寸设置</a></li>
+</ul>
+</li>
+<li><a href="#css-1">CSS</a><ul>
+<li><a href="#vertical-align">vertical-align</a></li>
+<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
+<li><a href="#%E5%88%97%E8%A1%A8">列表</a></li>
+<li><a href="#%E5%B8%83%E5%B1%80">布局</a></li>
+<li><a href="#%E8%BE%B9%E6%A1%86">边框</a></li>
+<li><a href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B">盒子模型</a></li>
+<li><a href="#%E5%86%85%E5%A4%96%E8%BE%B9%E8%B7%9D">内外边距</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+
+<span id="more"></span>
+
+
+<h1 id="B-S和C-S的简单认识"><a href="#B-S和C-S的简单认识" class="headerlink" title="B/S和C/S的简单认识"></a>B/S和C/S的简单认识</h1><p>client-server : 客户端服务器模式</p>
+<p>开发成本比较高、不易于维护、在客户端部署一套软件，服务器端也要部署</p>
+<p>browser-server : 浏览器服务器模式</p>
+<h1 id="网页的工作原理"><a href="#网页的工作原理" class="headerlink" title="网页的工作原理"></a>网页的工作原理</h1><p>通过域名或者 ip 然后访问服务器 服务器解析请求返回的是一个html文件</p>
+<p>浏览器将 html 文件解析成一个图文并茂的网页</p>
+<p>html 文件的组成部分: html css js(javascript)</p>
+<p>HTML 是 Hypertext Markup Language</p>
+<p>组织-&gt;文件夹和搜索选项-&gt;查看-&gt;隐藏已知文件的扩展名（去掉不选中）</p>
+<h1 id="认识标签"><a href="#认识标签" class="headerlink" title="认识标签"></a>认识标签</h1><p>格式：</p>
+<p><code>&lt;标签名 属性名1=&quot;属性值1&quot; 属性名2=&quot;属性值2&quot;&gt;要显示的内容&lt;/标签名&gt;</code></p>
+<p>标签注意事项：</p>
+<p>以<code>&lt;\&gt;</code>开始，中间放的是标签名</p>
+<p>属性跟属性之间 用空格隔开</p>
+<p>属性值 可以用双引号 单引号 或者不引 我建议使用双引号</p>
+<p><code>marquee(direction,scrollamount,width,height,loop)</code></p>
+<p>标签的分类：</p>
+<p>双边标签 <code>&lt;marquee&gt;&lt;/marquee&gt;</code></p>
+<p>单边标签 <code>&lt;br /&gt;</code>:换行</p>
+<h1 id="全局架构标签"><a href="#全局架构标签" class="headerlink" title="全局架构标签"></a>全局架构标签</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>是网页的标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span>要显示在网页的所有内容<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span><span class="comment">&lt;!-- 这是注释 --&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>设置字符集 ：告诉浏览器以utf-8编码格式显示</p>
+<p>出现乱码：</p>
+<ul>
+<li>文件的编码的格式（编辑器中选择utf-8无bom） </li>
+<li>在head头部 增加 <code>&lt;meta charset=&quot;utf-8&quot;&gt;</code> </li>
+<li>浏览器中：修改编码 </li>
+</ul>
+<h2 id="body常用属性"><a href="#body常用属性" class="headerlink" title="body常用属性"></a>body常用属性</h2><table>
+<thead>
+<tr>
+<th>tag</th>
+<th>desc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bgcolor</td>
+<td>背景颜色</td>
+</tr>
+<tr>
+<td>background</td>
+<td>网页的背景图片</td>
+</tr>
+<tr>
+<td>text</td>
+<td>字体颜色（控制body体中所有的文字颜色）</td>
+</tr>
+<tr>
+<td>left-margin</td>
+<td>左边距</td>
+</tr>
+<tr>
+<td>top-margin</td>
+<td>上边距</td>
+</tr>
+<tr>
+<td>link</td>
+<td>正常状态显示的颜色</td>
+</tr>
+<tr>
+<td>vlink</td>
+<td>访问过后的状态</td>
+</tr>
+<tr>
+<td>alink</td>
+<td>鼠标点击时候的状态</td>
+</tr>
+</tbody></table>
+<h2 id="字体修饰标记-如下都是双边标记"><a href="#字体修饰标记-如下都是双边标记" class="headerlink" title="字体修饰标记(如下都是双边标记)"></a>字体修饰标记(如下都是双边标记)</h2><p><code>&lt;font&gt;&lt;/font&gt;</code></p>
+<p>size: 字体大小 属性值是：1-7<br>face：字体 (楷体，微软雅黑….)<br>color: 字体颜色<br>颜色： <code>#000000</code> 前两位是红色 中间是绿色 结尾两位是蓝色  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">b</span>&gt;</span>：字体加粗(strong)</span><br><span class="line"><span class="tag">&lt;<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span>：斜体显示字体(em,cite)</span><br><span class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span><span class="tag">&lt;/<span class="name">u</span>&gt;</span>: 是下划线</span><br><span class="line"><span class="tag">&lt;<span class="name">s</span>&gt;</span><span class="tag">&lt;/<span class="name">s</span>&gt;</span>: 删除线</span><br><span class="line"><span class="tag">&lt;<span class="name">sub</span>&gt;</span><span class="tag">&lt;/<span class="name">sub</span>&gt;</span>：下标</span><br><span class="line"><span class="tag">&lt;<span class="name">sup</span>&gt;</span><span class="tag">&lt;/<span class="name">sup</span>&gt;</span>：上标</span><br></pre></td></tr></table></figure>
+
+<h3 id="排版标记"><a href="#排版标记" class="headerlink" title="排版标记"></a>排版标记</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>段落标记<span class="tag">&lt;/<span class="name">p</span>&gt;</span> 会自称一行（段）</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>行标签<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span>:换行</span><br><span class="line"><span class="tag">&lt;<span class="name">nobr</span> /&gt;</span>：不换行</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span> /&gt;</span>水平线：(align: 对其方式 属性值：center left right color：颜色 width：宽 size：粗细尺寸)</span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>（从h1到h6）通常网页中只会有一个h1</span><br><span class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span><span class="tag">&lt;<span class="name">h6</span>&gt;</span>(align)</span><br><span class="line"><span class="tag">&lt;<span class="name">pre</span>&gt;</span>原样输出<span class="tag">&lt;/<span class="name">pre</span>&gt;</span>（在学php时候 经常使用输出数据的时候进行格式化）</span><br></pre></td></tr></table></figure>
+
+<h2 id="实体符号"><a href="#实体符号" class="headerlink" title="实体符号"></a>实体符号</h2><p>诸如 “&lt;” 之类的符号在HTML中拥有特殊的含义，所以在文本中使用它们。</p>
+<blockquote>
+<p>&nbsp; (空格) &lt; &gt; &amp;&copy;&trade; &reg; &times; &divide;</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">&amp;nbsp;</span> 空格</span><br><span class="line"><span class="symbol">&amp;lt;</span> （&lt;）</span><br><span class="line"><span class="symbol">&amp;gt;</span> (&gt;)</span><br><span class="line"><span class="symbol">&amp;amp;</span></span><br><span class="line"><span class="symbol">&amp;copy;</span></span><br><span class="line"><span class="symbol">&amp;trade;</span></span><br><span class="line"><span class="symbol">&amp;reg;</span> <span class="symbol">&amp;times;</span> <span class="symbol">&amp;divide;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span> <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>type:</p>
+<ul>
+<li>disc：默认的黑心圆样式</li>
+<li>circle：空心圆</li>
+<li>square: 实心方块</li>
+</ul>
+<p>10.有序列表</p>
+<blockquote>
+<ol>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>type</code>: 1 A a I<br><code>start</code>: 要显示列表的起始位置</p>
+<h2 id="自定义列表"><a href="#自定义列表" class="headerlink" title="自定义列表"></a>自定义列表</h2><blockquote>
+<dl>
+  <dt>我是简介名</dt>
+  <dd>幸福的孩子</dd>
+  <dd>杜海涛</dd>
+  <dd>刘翔</dd>
+</dl>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>我是简介名<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>幸福的孩子<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>杜海涛<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>刘翔<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>class id style name 他们四个都是属性名 配合我们的 css 跟 js</p>
+<p><strong>基本上每个标签都有这四个属性</strong></p>
+<p>动态网页：</p>
+<p>数据内容展示出来是有变化的，比如：银行 账户余额（每个人都不一样）</p>
+<p>静态网页：</p>
+<p>做内容展示，所有人访问都是一样叫静态网页</p>
+<h1 id="HTML再认识"><a href="#HTML再认识" class="headerlink" title="HTML再认识"></a>HTML再认识</h1><p>nobr:</p>
+<p>双标签 <code>&lt;nobr&gt;</code>中间的内容不允许换行，这就是nobr<code>&lt;/nobr&gt;</code></p>
+<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>Uniform Resource Locator 统一资源定位符</p>
+<p>组成部分： 协议 地址 端口号 文件 参数</p>
+<p>协议：<code>http://</code> <code>https://</code> <code>file://</code> <code>ftp://</code> <code>smtp://</code> 邮件传输协议 <code>news://</code></p>
+<p>地址：<code>www.baidu.com</code> 域名 <code>ip</code> (cmd -&gt; ping 域名)</p>
+<p>端口号：(:80) web http://默认的端口号是80 范围：0-65535<br>通常已经被使用：0-1024</p>
+<p>https: 443 ftp: 21 smtp:// 25</p>
+<p>文件：要请求的文件 默认一般是：index.html</p>
+<p>参数：以？开始 后边跟的就是参数 形式：键1=值1&amp;键2=值2</p>
+<p>如果有多个参数的时候 中间用&amp;隔开</p>
+<p><a target="_blank" rel="noopener" href="http://www.baidu.com/index.html?word=qianfeng&amp;sex=1">http://www.baidu.com:80/index.html?word=qianfeng&amp;sex=1</a></p>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">href:要跳转的地址</span><br><span class="line"></span><br><span class="line">title: 就是鼠标放上去时候显示的内容（变成小手的时候）</span><br><span class="line"></span><br><span class="line">target：_self 在本窗口打开 _blank 在新窗口打开</span><br><span class="line"></span><br><span class="line">锚点：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#锚点名&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">name</span>=<span class="string">&quot;锚点名&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">了解（id=&quot;锚点名&quot;）</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片img"><a href="#图片img" class="headerlink" title="图片img"></a>图片img</h2><p>src资源地址</p>
+<p>绝对路径：</p>
+<p>网络绝对：<a target="_blank" rel="noopener" href="https://www.baidu.com/img/bd_logo1.png">https://www.baidu.com/img/bd_logo1.png</a></p>
+<p>磁盘绝对：C:/wamp64/www/1701/day02-html/code/ly.jpg</p>
+<p>(也可以使用/)</p>
+<p>站点绝对：</p>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/bd_logo1.png">https://www.baidu.com/bd_logo1.png</a></p>
+<p>bd_logo.png == <a target="_blank" rel="noopener" href="https://www.baidu.com/bd_logo1.png">https://www.baidu.com/bd_logo1.png</a> == <a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></p>
+<p>相对路径：</p>
+<p>以当前html文件为一个基准 寻找图片所在的位置 （路径）</p>
+<p><code>./</code> 在同一级目录（通常可以省略）</p>
+<p><code>../</code> 表示上一级目录(上两级 <code>../../</code> 层级多用绝对路径)</p>
+<p>alt:当图片加载失败的时候显示的内容</p>
+<p>title：鼠标悬停时候显示的内容</p>
+<p>width height</p>
+<p>【注】当只设置一个宽或者一个高的时候 图片会等比例缩放<br>如果给定了宽和高就会失帧 会变形</p>
+<p>热点地图(了解 ，掌握最好) usemap</p>
+<h2 id="音频-视频"><a href="#音频-视频" class="headerlink" title="音频 视频"></a>音频 视频</h2><p>audio:</p>
+<p>src：</p>
+<p>controls:控制条</p>
+<p>loop: 循环播放</p>
+<p>autoplay:自动播放</p>
+<p>video:</p>
+<p>width height</p>
+<p>src、controls、loop、autoplay</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>table:</p>
+<p>bgcolor:表格的背景颜色</p>
+<p>border：边框</p>
+<p>bordercolor:边框颜色</p>
+<p>align：表格的显示 对其方式</p>
+<p>cellspacing:单元格间距</p>
+<p>cellpadding：单元格中的内容跟边框的距离</p>
+<p>width，height</p>
+<p>tr:width,height,</p>
+<p>align:水平距离</p>
+<p>valign：垂直方向 top bottom middle</p>
+<p>th--td:width,height,align,valign,</p>
+<p>rowspan:</p>
+<p>colspan:</p>
+<p>caption:</p>
+<p>valign: top middle bottom</p>
+<p>day03-表单</p>
+<p>表格</p>
+<p>tel</p>
+<p>colspan:合并列，需要将同一行的那个td给干掉</p>
+<p>rowspan:合并行，需要将下一行的那个td给干掉</p>
+<p>url参数作用:</p>
+<p>a标签扩展：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;tel:132603519038&quot;</span>&gt;</span>dadianhua<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:wanglijuan@1000phone.com&quot;</span>&gt;</span>发送邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>1：<code>iframe(width\height\src\name\frameborder\scrolling)</code><br>frameborder: 0/1<br>scrolling: <code>no</code>/<code>yes</code>/<code>auto</code><br>2: <code>frameset(cols\rows\frameborder\border\bordercolor\noresize)</code><br><code>frame(src\name\scrolling)</code><br>3: form表单<br>用途：获取有意义的信息，用户键入信息（注册，登陆，留言等等）<br>属性:(action/method/enctype(multipart/form-data)/target)<br>基本用途：<br>form:<br>action:提交的地址<br>method:提交的方式<br>默认：get(在url中显示?参数) post<br>【注】:拉取信息是时候一般使用get<br>post:用户提交数据的时候使用<br>enctype=&quot;multipart/form-data&quot;<br>现在记住这个，是上传文件的时候必须使用一个属性<br>target：打开提交页面的方式  </p>
+<p>(1)input</p>
+<p>属性:(</p>
+<p>type：类型</p>
+<p>size:宽</p>
+<p>value：输入框的默认值（一般的时候不写，因为就是让用户键入信息）</p>
+<p>maxlength：允许键入的最大长度</p>
+<p>readonly：只读</p>
+<p>disabled：禁用状态</p>
+<blockquote>
+<p>:一般时候是用在只能看不能二次修改的值的时候（注册公司名）</p>
+</blockquote>
+<p>placeholder：提示信息 placeholder=&quot;默认提示的信息&quot;</p>
+<p>name:非常重要 要提交的内容的键)</p>
+<p>type(</p>
+<p>text:文本信息</p>
+<p>password：密码</p>
+<p>radio：单选框</p>
+<blockquote>
+<p>必须name值 name要一样</p>
+</blockquote>
+<p>必须value 一般使用习惯：1男 2女 0未知或者保密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">radio(&lt;label for=&quot;id名&quot;&gt;详细见代码&lt;/label&gt; checked)</span><br><span class="line"></span><br><span class="line">checkbox(checked)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明:必须有name属性 属性值必须： eg:like</p>
+</blockquote>
+<p>value</p>
+<p>submit</p>
+<p>hidden：区分，不让用户看见的值用</p>
+<p>file:上传文件时候使用</p>
+<p>)</p>
+<p>跳过这个坑：name属性一定要给</p>
+<p>value</p>
+<p>input（必须放在form中）</p>
+<p>button：最多时候配合js使用</p>
+<p>reset:重置按钮 （清空表单input中用户键入的内容）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button&gt;提交按钮&lt;button\&gt;</span><br></pre></td></tr></table></figure>
+
+<p>(2)select(multiple size name)</p>
+<p>下拉菜单</p>
+<blockquote>
+<p>：name</p>
+</blockquote>
+<p>option((value selected))</p>
+<blockquote>
+<p>：value</p>
+</blockquote>
+<p>(3)textarea(cols rows)</p>
+<p>双边标记：&lt;textarea&gt;默认中间不要有空格或者回车&lt;/textarea&gt;</p>
+<p><strong>提交的都是意义的数据 不包括<code>&lt;p\&gt;&lt;/p&gt;</code></strong></p>
+<p>4:头元素</p>
+<p><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;1.css&quot; /&gt;</code></p>
+<p>链接外部的css样式</p>
+<p><code>&lt;meta charset=&quot;utf-8&quot; /&gt;</code></p>
+<p>SEO:搜索引擎优化</p>
+<p><code>&lt;meta name=&quot;keywords&quot; content= &quot;&quot; /&gt;</code></p>
+<p>堆积网站关键字，用来提高网站的排名</p>
+<p><code>&lt;meta name= &quot;description&quot; content= &quot;&quot; /&gt;</code></p>
+<p>关于本网站的描述信息</p>
+<p><code>&lt;meta http-equiv=&quot;refresh&quot; content= &quot;3;url=http://www.baidu.com &quot; /&gt;</code></p>
+<p>在几秒以后跳转</p>
+<p>5: 无意义的标签</p>
+<ul>
+<li>div </li>
+<li>span</li>
+<li>footer</li>
+<li>header</li>
+<li>section</li>
+</ul>
+<p>都是双标签</p>
+<h1 id="CSS初认识"><a href="#CSS初认识" class="headerlink" title="CSS初认识"></a>CSS初认识</h1><h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>层叠样式表，Cascading Style Sheet</p>
+<p>网页中HTML CSS JavaScript的分工</p>
+<p>html:负责网页中的内容展示 由标签组成</p>
+<p>css：负责网页的排版 将内容友好的展示出来</p>
+<p>js: 负责网页的特效，一些动画效果 比如说轮播图</p>
+<h2 id="使用css的好处"><a href="#使用css的好处" class="headerlink" title="使用css的好处"></a>使用css的好处</h2><p>可以重复层叠样式 达到我们最终想要展示效果</p>
+<p>单独分离出来便于管理跟重复调用</p>
+<p>可以提高访问速度 节省服务器的流量开支</p>
+<h2 id="css的三种链接方式"><a href="#css的三种链接方式" class="headerlink" title="css的三种链接方式"></a>css的三种链接方式</h2><h3 id="行内样式"><a href="#行内样式" class="headerlink" title="行内样式"></a>行内样式</h3><p>格式： <code>style=&quot;属性名1:属性值1;属性名2:属性值2;&quot;</code></p>
+<h3 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h3><p>格式: 在head头中增加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type=<span class="string">&quot;text/css&quot;</span>&gt;</span><br><span class="line">选择器&#123;</span><br><span class="line">    属性:属性值;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="外部样式"><a href="#外部样式" class="headerlink" title="外部样式"></a>外部样式</h3><p>格式：<code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css文件的路径&quot; /&gt;</code>,里面的格式，跟内联样式一样</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">    属性:属性值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="css语法格式和注释"><a href="#css语法格式和注释" class="headerlink" title="css语法格式和注释"></a>css语法格式和注释</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">选择器&#123;</span><br><span class="line">    属性:属性值;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/* CSS的注释 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><p>自定义名规则：数字 字母 下划线 不能以数字开始</p>
+<p>标签选择器：所有的标签都可以做标签选择器 如果使用了标签选择器 当前网页中用这个标签的元素都增加了样式</p>
+<p>class选择器：</p>
+<p>在标签内增加class属性 属性值自定义 在CSS样式中使用如下</p>
+<p><code>.class属性名&#123;样式&#125;</code></p>
+<p>一个元素可以有多个class名 中间用空格隔开</p>
+<p>id选择器：</p>
+<p>在标签内增加id属性 属性值自定义 在CSS中使用如下</p>
+<p><code>#id名&#123;样式&#125;</code></p>
+<p><strong>注</strong>:通常一个网页中id名是唯一</p>
+<p>组合选择器:</p>
+<p>标签选择器,class，id选择器…. 形式 ：选择器与选择器之间用逗号隔开</p>
+<p>将多个元素增加共同的样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">eg: p,.meixi,#daishu&#123;</span><br><span class="line"></span><br><span class="line">font-size:35px;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>层级选择器：使用具有层级关系 可以从父类找到子类找到孙子类 增加样式</p>
+<p>选择器用空格隔开</p>
+<p>伪类选择器:<code>(link,hover,active,visited,focus,first-child,last-child)</code></p>
+<p>一般用于给 某些选择器增加特殊效果比如 a链接</p>
+<p>超链接状态顺序：</p>
+<p><code>a:link&#123;&#125;</code> 正常状态下（默认状态）<br><code>a:visited&#123;&#125;</code> 访问之后的样式<br><code>a:hover&#123;&#125;</code> 鼠标悬停的时候的样式<br><code>a:active&#123;&#125;</code> 鼠标点击时候的样式  </p>
+<p>注意，<code>a:hover</code> 必须位于 <code>a:link</code> 和 <code>a:visited</code> 之后，<code>a:active</code> 必须位于 <code>a:hover</code> 之后</p>
+<p>可靠的顺序是：<code>l(link)ov(visited)e</code> <code>h(hover)a(active)te</code>, 即用喜欢和讨厌两个词来概括</p>
+<p>focus:使用一般配合input <code>input:focus&#123;样式&#125;</code></p>
+<p>first-child:必须子元素中第一个是要增加样式的元素</p>
+<p>last-child:必须子元素中最后一个是要增加的样式的元素</p>
+<p>(IEl不支持的时候 可以声明doctype(大写))</p>
+<p>属性选择器:</p>
+<p>形式： <code>input[type=&quot;password&quot;]&#123;样式&#125;</code></p>
+<p><code>a[title]&#123;样式&#125;</code></p>
+<p><code>*</code> 通配符:给页面上所有的元素增加样式</p>
+<p><code>[选择器优先级]</code></p>
+<p><code>*</code>&lt;标签选择器&lt;<code>class</code>&lt;<code>id</code></p>
+<h2 id="尺寸设置"><a href="#尺寸设置" class="headerlink" title="尺寸设置"></a>尺寸设置</h2><p>只有块标签才有宽和高 div p section</p>
+<p>width height min-height max-height min-width max-width</p>
+<p>单位：</p>
+<p><code>%</code>:使用的是父级 的百分比</p>
+<p><code>px</code>:像素 一个点就是一个像素</p>
+<p><code>em</code>:设置的是当前元素的父级的字体尺寸</p>
+<p><code>rem</code>： html中的尺寸 倍数</p>
+<p>最长使用的字体尺寸: <code>12px</code> <code>14px</code> <code>16px</code></p>
+<p>7.常用属性</p>
+<p>字体：</p>
+<p><code>font-style</code>：normal 默认状态 italic斜体</p>
+<p><code>font-weight</code>：normal默认状态 bold 加粗</p>
+<p><code>font-size</code>： 字体的大小 谷歌 默认是16px; 最小支持12px;</p>
+<p><code>font-family</code>:楷体 微软雅黑</p>
+<p><code>font</code>: style weight size family</p>
+<p>文本:</p>
+<p><code>text-indent</code>:文本的缩进 最好用em 一般都是2em</p>
+<p><code>text-align</code>：文本的水平对齐方式 left right center</p>
+<p><code>white-space</code>: nowrap; (了解) 强行在一行显示内容</p>
+<p><code>text-overflow</code>:clip超出部分直接截断 ellipsis：超出部分显示’…’</p>
+<p>配合overflow:hidden使用</p>
+<p>text-decoration(</p>
+<p>overline:上划线</p>
+<p>line-through：中划线</p>
+<p>underline:下划线 none)</p>
+<p>text-shadow: 水平偏移的值 垂直偏移值 模糊程度 颜色</p>
+<p>line-height：行高 当块标签的高和行高设置值一样会垂直居中</p>
+<p>vertical-align：</p>
+<h1 id="CSS-1"><a href="#CSS-1" class="headerlink" title="CSS"></a>CSS</h1><h2 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h2><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>background-color： 背景颜色</p>
+<p>background-image: url(图片地址)</p>
+<p>background-repeat(</p>
+<p>repeat：默认平铺</p>
+<p>no-repeat:不平铺</p>
+<p>repeat-x：横向平铺</p>
+<p>repeat-y:纵向平铺</p>
+<p>repeat-y:纵向平铺</p>
+<p>)</p>
+<p>background-attachment(</p>
+<p>fixed：（了解）相对窗口固定，当显示该div的时候，背景图才显示出来</p>
+<p>local：背景图会随着内容的滚动而滚动</p>
+<p>scroll：默认属性，背景图不会随着内容的滚动而滚动</p>
+<p>)</p>
+<p>background-position：一定要有一个背景图 background-image属性（left、center、right、top、bottom、xy值）</p>
+<p>简写形式：background:url(erha.jpg) no-repeat pink;</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>list-style：none</p>
+<p>list-style-image:url()</p>
+<p>list-style-position：inside列表项目标记放置在文本以内/outside</p>
+<p>list-style-type</p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>float：浮动 left right none</p>
+<p>clear: 用于清除浮动 both</p>
+<p>display:把块元素变成行元素 也可以把行元素变成块元素(</p>
+<p>none</p>
+<p>inline-block:切换为行内块</p>
+<p>block：切换为块</p>
+<p>inline：切换为行内元素</p>
+<p>none：让标签消失，位置也不再</p>
+<p>)</p>
+<p>visibility：(visible、hidden:隐藏元素，但是位置依然存在)</p>
+<p>overflow（</p>
+<p>visible:默认不做处理</p>
+<p>hidden:超出部分隐藏、</p>
+<p>scroll:超出部分出现滚动条</p>
+<p>auto:自动判断 如果有内容超出处彰显滚动条，如果没有就不显示滚动条</p>
+<p>）</p>
+<p>position（</p>
+<p>relative：相对自身文档流中的位置进行定位</p>
+<p>absolute：相对定位 会脱离文档流 当想从父级定位 在父级中使用position:relative</p>
+<p>static:默认属性</p>
+<p>fixed:相对于当前窗口的</p>
+<p>）</p>
+<p>z-index：设置元素的层叠顺序 值越大越在上边，这个属性的测试需要都为absolute或者fixed的才有效</p>
+<p>如下属性只有当定位是relative、absolute、fixed时有效</p>
+<p>top</p>
+<p>right</p>
+<p>bottom</p>
+<p>left</p>
+<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><p>border</p>
+<p>border-width</p>
+<p>border-style(</p>
+<p>dotted:点线</p>
+<p>solid:实线</p>
+<p>dashed:虚线</p>
+<p>double:双线</p>
+<p>border-color：边框颜色</p>
+<p>border-radius:</p>
+<p>给一个值：全部变</p>
+<p>给两个值：对角</p>
+<p>三个值: 左上 右上左下 右下</p>
+<p>box-shadow:边框的阴影效果</p>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h2 id="内外边距"><a href="#内外边距" class="headerlink" title="内外边距"></a>内外边距</h2><p>padding:内边距</p>
+<p>padding-top</p>
+<p>padding-right</p>
+<p>padding-bottom</p>
+<p>padding-left</p>
+<p>margin:外边距</p>
+<p>margin: 0 auto;</p>
+<p>margin-top</p>
+<p>margin-right</p>
+<p>margin-left</p>
+<p>margin-bottom</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>PHP[入门]P01~06html</p><p><a href="https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P01~06html/">https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P01~06html/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://hzjoyous.github.io"><p>hzjoyous</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-01-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/2021/06/11/other/php_parser/" target="_blank">php_parser</a><br></span><span>  2.<a class="is-size-6" href="/2020/01/20/code/php/php_021_src-phpini/" target="_blank">php[021]:关于phpini加载相对路径(php源码)</a><br></span><span>  3.<a class="is-size-6" href="/2020/01/15/code/php/php_020_php-config/" target="_blank">PHP[020]:--with-php-config</a><br></span><span>  4.<a class="is-size-6" href="/2019/12/10/code/php/z_2019_12_09%E6%9D%82%E8%B0%88/" target="_blank">2019_12_09_隐藏X-Powered-By:xxx</a><br></span><span>  5.<a class="is-size-6" href="/2019/07/01/code/php/php_000_link/" target="_blank">PHP[000]:书本杂志</a><br></span><span>  6.<a class="is-size-6" href="/2019/03/19/code/php/php_018_BitMap/" target="_blank">PHP[018]:BitMap</a><br></span><span>  7.<a class="is-size-6" href="/2019/03/19/code/php/php_019_RabbitMq/" target="_blank">PHP[018]:RabbitMq</a><br></span><span>  8.<a class="is-size-6" href="/2019/03/18/code/php/php_017_EventLister/" target="_blank">PHP[017]:事件监听</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P07-PHP%E5%88%9D%E8%AE%A4%E8%AF%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">PHP[入门]P07-PHP初认识</span></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+            var gitalk = new Gitalk({
+            language:'zh-CN',
+            id: '1da94ec3f34f386d274bddb0437667eb',
+            repo: 'blog_comment',
+            owner: 'hzjoyous',
+            clientID: '0f9c9cf415e0cff92319',
+            clientSecret: 'dbb2be3127b4be2117db6d1e761d7d89d90896a2',
+            admin: ["hzjoyous"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/theme/avatar2.jpg" alt="nil"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">nil</p><p class="is-size-6 is-block">nil is null , null is nil</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>天朝</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">129</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">33</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/hzjoyous" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/hzjoyous"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="/hzjmessage@outlook.com"><i class="fa fa-envelope"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li><li><a class="level is-mobile" href="https://hzjoyous.gitee.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">hzjoyous.gitee.io</span></span><span class="level-right"><span class="level-item tag">hzjoyous.gitee.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/qq_15539917" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">LX</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://clarence888.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">小二的CodingLife</span></span><span class="level-right"><span class="level-item tag">clarence888.github.io</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新评论</h3><span class="body_hot_comment">加载中，最新评论有1分钟缓存...</span></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-20T17:25:12.000Z">2021-06-21</time></p><p class="title"><a href="/2021/06/21/amazing_tool/hot_to_see/">my awesome</a></p><p class="categories"><a href="/categories/HowToUse/">HowToUse</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-16T22:27:06.000Z">2021-06-17</time></p><p class="title"><a href="/2021/06/17/code/php/php_026_xhprof/">php[026]性能分析xhprof</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/06/11/other/php_parser/"><img src="/images/2021/岁月的童话2.jpg" alt="php_parser"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-11T08:18:10.000Z">2021-06-11</time></p><p class="title"><a href="/2021/06/11/other/php_parser/">php_parser</a></p><p class="categories"><a href="/categories/php/">php</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T14:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_025_composerforyou/">php[025]发布composer</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T13:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_024_%E7%94%9F%E6%88%90%E5%99%A8/">php[024]生成器</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/HowToUse/"><span class="level-start"><span class="level-item">HowToUse</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/c/"><span class="level-start"><span class="level-item">c</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/knowledge/"><span class="level-start"><span class="level-item">knowledge</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">63</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/tool/"><span class="level-start"><span class="level-item">tool</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/uwp/"><span class="level-start"><span class="level-item">uwp</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/web/"><span class="level-start"><span class="level-item">web</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><a class="level is-mobile is-marginless" href="/archives/"><span class="level-start"><span class="level-item">查看全部&gt;&gt;</span></span></a></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/php/"><span class="tag">php</span><span class="tag is-grey-lightest">69</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag is-grey-lightest">21</span></a></div><div class="control"><a class="tags has-addons" href="/tags/js/"><span class="tag">js</span><span class="tag is-grey-lightest">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/blog/"><span class="tag">blog</span><span class="tag is-grey-lightest">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tool/"><span class="tag">tool</span><span class="tag is-grey-lightest">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c#</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/uwp/"><span class="tag">uwp</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/win/"><span class="tag">win</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DayDayUp/"><span class="tag">DayDayUp</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network-protocol/"><span class="tag">Network protocol</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vargrant/"><span class="tag">Vargrant</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bash/"><span class="tag">bash</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bison/"><span class="tag">bison</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/book/"><span class="tag">book</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/database/"><span class="tag">database</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag is-grey-lightest">1</span></a></div></div><div class="field is-grouped is-grouped-multiline"><a class="tags has-addons" href="/tags/"><span class="tag">查看全部&gt;&gt;</span></a></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a><p class="size-small"><span>&copy; 2021 hzjoyous</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br />&nbsp;&nbsp;&nbsp;&nbsp;方便于网友与自己学习交流，如有侵权，请<a href="/message" target="_blank">留言</a>，立即处理]<br /></span><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2017/06/11 00:00:00')", 250,"");</script><br></span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="557690471" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script>$.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);})</script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(true){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>

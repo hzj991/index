@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>PHP[入门]P10-函数 - 吱~</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吱~"><meta name="msapplication-TileImage" content="/images/theme/simple-favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吱~"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。  day10-函数 变量的引用unset其中一个值 常量说常量值是标量类型 在php7.0以后我们的常量值可以是数组 1.为什么要自定义函数 可以提高代码的重用性 提高开发效率 减少了代码的冗余量 定义函数就是封装功能 2.分类： 系统函数 自定义函数 3.自定义函数 定义： 语"><meta property="og:type" content="blog"><meta property="og:title" content="吱"><meta property="og:url" content="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P10-%E5%87%BD%E6%95%B0/"><meta property="og:site_name" content="吱"><meta property="og:description" content="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。  day10-函数 变量的引用unset其中一个值 常量说常量值是标量类型 在php7.0以后我们的常量值可以是数组 1.为什么要自定义函数 可以提高代码的重用性 提高开发效率 减少了代码的冗余量 定义函数就是封装功能 2.分类： 系统函数 自定义函数 3.自定义函数 定义： 语"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hzjoyous.github.io/images/theme/avatar2.jpg"><meta property="article:published_time" content="2017-01-01T01:01:10.000Z"><meta property="article:modified_time" content="2021-06-16T06:16:58.864Z"><meta property="article:author" content="nil"><meta property="article:tag" content="php"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/theme/avatar2.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P10-%E5%87%BD%E6%95%B0/"},"headline":"吱~","image":["https://hzjoyous.github.io/img/og_image.png"],"datePublished":"2017-01-01T01:01:10.000Z","dateModified":"2021-06-16T06:16:58.864Z","author":{"@type":"Person","name":"hzjoyous"},"description":"这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&#x2F;05&#x2F;06年从有道笔记导出至此。  day10-函数 变量的引用unset其中一个值 常量说常量值是标量类型 在php7.0以后我们的常量值可以是数组 1.为什么要自定义函数 可以提高代码的重用性 提高开发效率 减少了代码的冗余量 定义函数就是封装功能 2.分类： 系统函数 自定义函数 3.自定义函数 定义： 语"}</script><link rel="canonical" href="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P10-%E5%87%BD%E6%95%B0/"><link rel="icon" href="/images/theme/simple-favicon.svg"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Join Gitter" href="https://gitter.im/hexo-theme-amazing/community"><i class="fab fa-gitter"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2017-01-01  <a class="commentCountImg" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P10-%E5%87%BD%E6%95%B0/#comment-container"><span class="display-none-class">0dbcbec7b6794b39dabb1565049dafce</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="0dbcbec7b6794b39dabb1565049dafce">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>7 分钟  <i class="fas fa-pencil-alt"> </i>1.1 k</span></div></div><h1 class="title is-3 is-size-4-mobile">PHP[入门]P10-函数</h1><div class="content"><blockquote>
+<p>这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020/05/06年从有道笔记导出至此。</p>
+</blockquote>
+<p>day10-函数</p>
+<p>变量的引用unset其中一个值</p>
+<p>常量说常量值是标量类型</p>
+<p>在php7.0以后我们的常量值可以是数组</p>
+<p>1.为什么要自定义函数</p>
+<p>可以提高代码的重用性</p>
+<p>提高开发效率</p>
+<p>减少了代码的冗余量</p>
+<p>定义函数就是封装功能</p>
+<p>2.分类：</p>
+<p>系统函数</p>
+<p>自定义函数</p>
+<p>3.自定义函数</p>
+<p>定义：</p>
+<p>语法格式：</p>
+<p>function 函数名([参数列表])</p>
+<p>{</p>
+<p>函数体;</p>
+<p>[return 返回值];</p>
+<p>}</p>
+<p>调用</p>
+<p>函数名([参数列表]);</p>
+<p>函数名命名规范：</p>
+<p>1.必须以function 开始</p>
+<p>2.如同变量一样 ，以数字字母下划线组成 不以数字开始</p>
+<p>3.函数不区分大小写 但是要求大家区分大小写</p>
+<p>4.函数命名不能使用系统已经定义过的关键字或者系统函数名称</p>
+<p>5.命名一般遵从的是小驼峰命名法或者下划线 （根据具体的项目安排）</p>
+<p>[注意]：</p>
+<p>函数可以重复调用，甚至在函数前边后边（函数是条狗，哪里需要哪里吼）</p>
+<p>函数不可以重复定义 即函数不能被重载</p>
+<p>如果函数定义了，不调用不执行</p>
+<p>参数：【根据实际的需求增加，可以有可以没有】</p>
+<p>我们在定义函数时候的小括号里面的参数叫形参</p>
+<p>在调用函数的时候小括号里面的实参</p>
+<p>如果我们的形参里参数有带默认值的参数，放在参数列表的后边</p>
+<p>参数值是可变的，提高了代码的重用性</p>
+<p>如果没有形参，调用函数的时候传实参那么不会报错（这种事情瞎子才干）</p>
+<p>return:【根据实际需求，可以有可以没有】</p>
+<p>调用函数的时候给返回值;</p>
+<p>return 返回值;(如果有多个返回值:可以放在数组里或者.拼接);</p>
+<p>return 返回值; 当前return结束以后，后边的语句就不再执行</p>
+<p>4.变量的作用域</p>
+<p>变量可使用的地方</p>
+<p>外部变量:就是函数外部的变量</p>
+<p>内部变量:就是函数内部的变量</p>
+<p>在函数内部不可以使用函数外部的变量</p>
+<p>解决方法：</p>
+<p>1.使用关键字global<br>外部变量名（不推荐使用，因为可以在函数内部改变外部变量值）</p>
+<p>2 推荐使用的方式</p>
+<p>超全局变量：</p>
+<p>5.静态变量：</p>
+<p>static 关键词<br>在函数加载的时候定义一次，即使函数执行以后也不会释放，依然存在</p>
+<p>6.内部函数：</p>
+<p>函数里面还有一个自定义函数</p>
+<p>【注】:</p>
+<p>只能定义一次解决方式有三种</p>
+<p>1.static</p>
+<p>2.function_exists</p>
+<p>3.is_callable</p>
+<p>调用内部函数的时候，只能在函数定义之后调用，不能前边调用</p>
+<p>当调用了外变的函数以后，才可以在外部使用内部函数</p>
+<p>7.变量函数：</p>
+<p>function demo()</p>
+<p>{</p>
+<p>echo &#39;踏歌长行，梦想永在&#39;;</p>
+<p>}</p>
+<p>// demo();</p>
+<p>$str = &#39;demo&#39;;</p>
+<p>$str(); //== demo();</p>
+<p>8.匿名函数</p>
+<p>$str = function ()</p>
+<p>{</p>
+<p>echo &#39;youmengxiang&#39;;</p>
+<p>};</p>
+<p>把一个没有名字的函数就是匿名函数 直接赋给一个变量使用</p>
+<p>调用方式 变量名();</p>
+<p>匿名函数想要使用外部变量的时候 使用use关键词 use(变量名)<br>如果有多个用逗号隔开</p>
+<p>想要在匿名函数内部改变use过来的变量值 在use时候传变量的引用eg:<br>use(&amp;$name)</p>
+<p>$str();</p>
+<p>9.回调函数:</p>
+<p>10.递归函数：</p>
+<p>11.引用传参：</p>
+<p>12.可变参数类型</p>
+<p>func_num_args()</p>
+<p>func_get_args()</p>
+<p>func_get_arg($i)</p>
+<p>...</p>
+<p>13.include require include_once require_once</p>
+<p>---------------</p>
+<p>超全局变量</p>
+<p>$GLOBALS</p>
+<p>$_REQUEST</p>
+<p>$_GET $_POST</p>
+<p>$_FILES</p>
+<p>$_COOKIE $_SESSION</p>
+<p>---------------</p>
+<p>错误：</p>
+<p>Notice 提示</p>
+<p>Warning 警告</p>
+<p>Error 错误</p>
+<p>----------------</p>
+<p>常用数学函数：</p>
+<p>abs() 绝对值</p>
+<p>max () 最大值</p>
+<p>min() 最小值</p>
+<p>mt_getrandmax() 最大随机数</p>
+<p>pi() 圆周率</p>
+<p>pow() x的y次方</p>
+<p>round() 浮点数四舍五入</p>
+<p>deg2rad() 角度转弧度</p>
+<p>rad2deg() 弧度转角度</p>
+<p>---------</p>
+<p>变量的值传递跟引用传递的区别</p>
+<p>//值传递</p>
+<p>$num = 10;</p>
+<p>$num2 = $num;</p>
+<p>//传引用</p>
+<p>$num = 10;</p>
+<p>$num2 = &amp;$num;</p>
+<p>unset($num);</p>
+<p>echo $num2;</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>PHP[入门]P10-函数</p><p><a href="https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P10-函数/">https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P10-函数/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://hzjoyous.github.io"><p>hzjoyous</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-01-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/2021/06/11/other/php_parser/" target="_blank">php_parser</a><br></span><span>  2.<a class="is-size-6" href="/2020/01/20/code/php/php_021_src-phpini/" target="_blank">php[021]:关于phpini加载相对路径(php源码)</a><br></span><span>  3.<a class="is-size-6" href="/2020/01/15/code/php/php_020_php-config/" target="_blank">PHP[020]:--with-php-config</a><br></span><span>  4.<a class="is-size-6" href="/2019/12/10/code/php/z_2019_12_09%E6%9D%82%E8%B0%88/" target="_blank">2019_12_09_隐藏X-Powered-By:xxx</a><br></span><span>  5.<a class="is-size-6" href="/2019/07/01/code/php/php_000_link/" target="_blank">PHP[000]:书本杂志</a><br></span><span>  6.<a class="is-size-6" href="/2019/03/19/code/php/php_018_BitMap/" target="_blank">PHP[018]:BitMap</a><br></span><span>  7.<a class="is-size-6" href="/2019/03/19/code/php/php_019_RabbitMq/" target="_blank">PHP[018]:RabbitMq</a><br></span><span>  8.<a class="is-size-6" href="/2019/03/18/code/php/php_017_EventLister/" target="_blank">PHP[017]:事件监听</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P11-%E5%87%BD%E6%95%B0%E5%86%8D%E8%AE%A4%E8%AF%86/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">PHP[入门]P11-函数再认识</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P09-%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/"><span class="level-item">PHP[入门]P09-流程控制</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+            var gitalk = new Gitalk({
+            language:'zh-CN',
+            id: '0dbcbec7b6794b39dabb1565049dafce',
+            repo: 'blog_comment',
+            owner: 'hzjoyous',
+            clientID: '0f9c9cf415e0cff92319',
+            clientSecret: 'dbb2be3127b4be2117db6d1e761d7d89d90896a2',
+            admin: ["hzjoyous"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/theme/avatar2.jpg" alt="nil"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">nil</p><p class="is-size-6 is-block">nil is null , null is nil</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>天朝</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">129</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">33</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/hzjoyous" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/hzjoyous"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="/hzjmessage@outlook.com"><i class="fa fa-envelope"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li><li><a class="level is-mobile" href="https://hzjoyous.gitee.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">hzjoyous.gitee.io</span></span><span class="level-right"><span class="level-item tag">hzjoyous.gitee.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/qq_15539917" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">LX</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://clarence888.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">小二的CodingLife</span></span><span class="level-right"><span class="level-item tag">clarence888.github.io</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新评论</h3><span class="body_hot_comment">加载中，最新评论有1分钟缓存...</span></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-20T17:25:12.000Z">2021-06-21</time></p><p class="title"><a href="/2021/06/21/amazing_tool/hot_to_see/">my awesome</a></p><p class="categories"><a href="/categories/HowToUse/">HowToUse</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-16T22:27:06.000Z">2021-06-17</time></p><p class="title"><a href="/2021/06/17/code/php/php_026_xhprof/">php[026]性能分析xhprof</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/06/11/other/php_parser/"><img src="/images/2021/岁月的童话2.jpg" alt="php_parser"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-11T08:18:10.000Z">2021-06-11</time></p><p class="title"><a href="/2021/06/11/other/php_parser/">php_parser</a></p><p class="categories"><a href="/categories/php/">php</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T14:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_025_composerforyou/">php[025]发布composer</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T13:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_024_%E7%94%9F%E6%88%90%E5%99%A8/">php[024]生成器</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/HowToUse/"><span class="level-start"><span class="level-item">HowToUse</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/c/"><span class="level-start"><span class="level-item">c</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/knowledge/"><span class="level-start"><span class="level-item">knowledge</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">63</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/tool/"><span class="level-start"><span class="level-item">tool</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/uwp/"><span class="level-start"><span class="level-item">uwp</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/web/"><span class="level-start"><span class="level-item">web</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><a class="level is-mobile is-marginless" href="/archives/"><span class="level-start"><span class="level-item">查看全部&gt;&gt;</span></span></a></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/php/"><span class="tag">php</span><span class="tag is-grey-lightest">69</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag is-grey-lightest">21</span></a></div><div class="control"><a class="tags has-addons" href="/tags/js/"><span class="tag">js</span><span class="tag is-grey-lightest">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/blog/"><span class="tag">blog</span><span class="tag is-grey-lightest">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tool/"><span class="tag">tool</span><span class="tag is-grey-lightest">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c#</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/uwp/"><span class="tag">uwp</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/win/"><span class="tag">win</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DayDayUp/"><span class="tag">DayDayUp</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network-protocol/"><span class="tag">Network protocol</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vargrant/"><span class="tag">Vargrant</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bash/"><span class="tag">bash</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bison/"><span class="tag">bison</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/book/"><span class="tag">book</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/database/"><span class="tag">database</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag is-grey-lightest">1</span></a></div></div><div class="field is-grouped is-grouped-multiline"><a class="tags has-addons" href="/tags/"><span class="tag">查看全部&gt;&gt;</span></a></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a><p class="size-small"><span>&copy; 2021 hzjoyous</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br />&nbsp;&nbsp;&nbsp;&nbsp;方便于网友与自己学习交流，如有侵权，请<a href="/message" target="_blank">留言</a>，立即处理]<br /></span><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2017/06/11 00:00:00')", 250,"");</script><br></span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="557690471" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script>$.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);})</script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(true){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>

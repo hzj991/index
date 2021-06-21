@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>PHP[入门]P15-数据库 数据类型 字符集  存储引擎 - 吱~</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吱~"><meta name="msapplication-TileImage" content="/images/theme/simple-favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吱~"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。  day15 数据库 数据类型 字符集 存储引擎 1.数据类型 int 默认没有设置int字节 11位 char varchar 数据类型的区别： timestamp: regtime timestamp default current_timestamp; 在增加数据的时候没有"><meta property="og:type" content="blog"><meta property="og:title" content="吱"><meta property="og:url" content="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P15-%E6%95%B0%E6%8D%AE%E5%BA%93%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E5%AD%97%E7%AC%A6%E9%9B%86%20%20%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"><meta property="og:site_name" content="吱"><meta property="og:description" content="这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&amp;#x2F;05&amp;#x2F;06年从有道笔记导出至此。  day15 数据库 数据类型 字符集 存储引擎 1.数据类型 int 默认没有设置int字节 11位 char varchar 数据类型的区别： timestamp: regtime timestamp default current_timestamp; 在增加数据的时候没有"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hzjoyous.github.io/images/theme/avatar2.jpg"><meta property="article:published_time" content="2017-01-01T01:01:15.000Z"><meta property="article:modified_time" content="2021-06-16T06:16:58.864Z"><meta property="article:author" content="nil"><meta property="article:tag" content="php"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/theme/avatar2.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P15-%E6%95%B0%E6%8D%AE%E5%BA%93%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E5%AD%97%E7%AC%A6%E9%9B%86%20%20%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"},"headline":"吱~","image":["https://hzjoyous.github.io/img/og_image.png"],"datePublished":"2017-01-01T01:01:15.000Z","dateModified":"2021-06-16T06:16:58.864Z","author":{"@type":"Person","name":"hzjoyous"},"description":"这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020&#x2F;05&#x2F;06年从有道笔记导出至此。  day15 数据库 数据类型 字符集 存储引擎 1.数据类型 int 默认没有设置int字节 11位 char varchar 数据类型的区别： timestamp: regtime timestamp default current_timestamp; 在增加数据的时候没有"}</script><link rel="canonical" href="https://hzjoyous.github.io/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P15-%E6%95%B0%E6%8D%AE%E5%BA%93%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E5%AD%97%E7%AC%A6%E9%9B%86%20%20%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"><link rel="icon" href="/images/theme/simple-favicon.svg"><meta name="referrer" content="no-referrer-when-downgrade"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css?family=Ubuntu:400,600|Source+Code+Pro|Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Microsoft YaHei:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&amp;amp;subset=latin,latin-ext|Inconsolata|Itim|Lobster.css"><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="/js/globalUtils.js"></script><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body class="is-3-column has-navbar-fixed-top"><nav class="navbar navbar-main is-fixed-top"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Join Gitter" href="https://gitter.im/hexo-theme-amazing/community"><i class="fab fa-gitter"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a><a class="navbar-item" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a></div></div></div></nav><script type="text/javascript" src="/js/theme-setting.js"></script><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><!--!--><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><i class="far fa-calendar-plus"> </i>2017-01-01  <a class="commentCountImg" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P15-%E6%95%B0%E6%8D%AE%E5%BA%93%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20%E5%AD%97%E7%AC%A6%E9%9B%86%20%20%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/#comment-container"><span class="display-none-class">8808517c92b3413f7a9b4d2e3ebc7d7f</span><i class="far fa-comment-dots"></i> <span class="commentCount" id="8808517c92b3413f7a9b4d2e3ebc7d7f">99+</span>  </a><span class="level-item"><i class="far fa-clock"> </i>7 分钟  <i class="fas fa-pencil-alt"> </i>1.1 k</span></div></div><h1 class="title is-3 is-size-4-mobile">PHP[入门]P15-数据库 数据类型 字符集  存储引擎</h1><div class="content"><blockquote>
+<p>这是我早期的 php 学习笔记，php 的学习版本版本是 5.6、7，🐟2020/05/06年从有道笔记导出至此。</p>
+</blockquote>
+<p>day15 数据库 数据类型 字符集 存储引擎</p>
+<p>1.数据类型</p>
+<p>int 默认没有设置int字节 11位</p>
+<p>char varchar 数据类型的区别：</p>
+<p>timestamp: regtime timestamp default current_timestamp;</p>
+<p>在增加数据的时候<br>没有给指定的时间类型字段值的时候，默认填充的值是当前时间的时间戳</p>
+<p>enum:枚举类型 用于互斥的 单选项</p>
+<p>新建字段时候</p>
+<p>sex enum(&#39;w&#39;,&#39;m&#39;);</p>
+<p>// sex enum(1,2,.….);</p>
+<p>存储值时候：</p>
+<p>insert into user values(&#39;w&#39;);</p>
+<p>insert into user values(&#39;1&#39;);</p>
+<p>set:集合类型</p>
+<p>设置字段类型：love set(&#39;eat&#39;,&#39;play&#39;,&#39;sport&#39;,&#39;wan&#39;);</p>
+<p>// ; 1 2, 4, 8;</p>
+<p>insert into user values(&#39;eat,play&#39;);</p>
+<p>insert into user values(&#39;6&#39;);</p>
+<p>unsigned:无符号 规定 没有负数 int(10) unsigned eg：编号，年龄......</p>
+<p>auto_increment：自增 常用于：id</p>
+<p>修改起始值：alter table user auto_increment=起始值</p>
+<p>default &#39;值&#39;： 默认值 再给某个字段增加值的时候就是插入数据时没有给值<br>默认使用设置的默认值</p>
+<p>not null :创建时在字段语句后接上：not null</p>
+<p>2.字符集</p>
+<p>utf8 GBK GB2312</p>
+<p>3.存储引擎</p>
+<p>show engines;可以查看到当前服务器支持的所有引擎。</p>
+<p>myisam 和 innodb的区别</p>
+<p>myisam 不支持事物 表锁 支持全文索引 查询的速度快</p>
+<p>innodb 支持事物 行锁 支持外键 数据操作速度快 默认读取不加锁<br>处理大数据优先选择innodb</p>
+<p>4.索引</p>
+<p>普通索引：</p>
+<p>格式：alter table 表 add index(字段);</p>
+<p>唯一索引： 当前列值唯一</p>
+<p>格式：alter table 表 add unique(字段);</p>
+<p>主键索引:不允许有空值 也别重复 是特殊的唯一索引 【注】基本上每个表都有id<br>会给主键索引 自动递增</p>
+<p>格式：alter table 表 add primary key(字段);</p>
+<p>全文索引：</p>
+<p>格式：alter table 表 add fulltext(字段);</p>
+<p>删除索引：</p>
+<p>格式：alter table 表 drop index字段;</p>
+<p>删除主键索引：</p>
+<p>格式: alter table money drop primary key;</p>
+<p>5.DML(增，删，改)</p>
+<p>增：</p>
+<p>1.insert into tablename values(值1,值2,.…);</p>
+<p>[注]:按照字段的顺序跟值一一对应 添加； 如果有默认值 不想给定值<br>可以用null</p>
+<p>2.insert [into] 表 values(值1,值2,值n);<br>可以将into省略（知道就好，尽量不用）</p>
+<p>3.insert into tablename(字段1,字段2,.….) values(值1,值2,.….);</p>
+<p>[注]：按照自己赋的字段 字段跟值一一对应;</p>
+<p>4.insert into star(name, money, province, age, sex)</p>
+<p>values(&#39;黄晓明&#39;, 2000000, &#39;山东&#39;, 39, 0),</p>
+<p>( &#39;angelababy&#39;, 3000000, &#39;上海&#39;, 27, 1),</p>
+<p>( &#39;陈赫&#39;, 150000, &#39;福建&#39;, 31, 0);</p>
+<p>[注]：<br>字段名和值要一一对应，每条数据用小括号括起来，每条数据用逗号分隔开<br>最后的使用分号结束;</p>
+<p>插入数据时候可以不传值的情况</p>
+<p>1.自增的字段 （默认+1）</p>
+<p>2.有默认值的字段 default</p>
+<p>3.可以为空的字段</p>
+<p>删除：</p>
+<p>delete from tablename where 条件;</p>
+<p>[注]:要写where条件 不然后果自负</p>
+<p>修改：</p>
+<p>update tablename set 字段1=值1, 字段2=值2 .. where 条件;</p>
+<p>[注]：要写where条件 不然就是修改全表数据了;</p>
+<p>6.DQL(查)</p>
+<p>1.select * from tablename;</p>
+<p>[注]：是执行效率最低的一种方式,会每天数据全部读一遍;</p>
+<p>2.指定字段查询：</p>
+<p>select 字段名,字段名 from star;</p>
+<p>3.查询出不重复的记录</p>
+<p>select distinct age, sex from star;</p>
+<p>[注]:两个字段查询的是组合起来不重复的记录。</p>
+<p>一个字段 当前字段不重复的记录</p>
+<p>4.有条件的查询</p>
+<p>select 字段名,.… from star where age = 43;</p>
+<p>select * from star where age = 43;</p>
+<p>5.条件查询</p>
+<p>select * from star where age&gt;32 and sex=0;</p>
+<p>select * from star where age&gt;32 or sex=0;</p>
+<p>select * from star where age between A and B; //区间 在A和B之间 包含A B</p>
+<p>select * from star where age in(32,43);//在in值中的数据</p>
+<p>like : &#39;%&#39;代表模糊查询 [注]：效率很低 也是查询所有进行匹配</p>
+<p>排序：</p>
+<p>order by 字段名 desc/asc desc:倒序 asc :默认的正序</p>
+<p>多字段排序：</p>
+<p>order by 字段名1 desc, 字段名2 desc [注]：多字段排序呢<br>先按照前边的字段进行排序，如果前边的都相等排序失败，就按照第二个字段进行排序</p>
+<p>limit 限制查询结果集</p>
+<p>limit 2; 取符合条件的数据的前两条</p>
+<p>limit 0,3; 取符合条件的数据从0（第一条）开始取，取了三条数据以后结束</p>
+<p>7.where条件</p>
+<p>8.结果集排序</p>
+<p>9.限制结果集</p>
+<p>10.分组</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>PHP[入门]P15-数据库 数据类型 字符集  存储引擎</p><p><a href="https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P15-数据库 数据类型 字符集  存储引擎/">https://hzjoyous.github.io/2017/01/01/code/php/php-入门/P15-数据库 数据类型 字符集  存储引擎/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><a href="https://hzjoyous.github.io"><p>hzjoyous</p></a></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2017-01-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-06-16</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="recommend-area"><div class="recommend-post"><span class="is-size-6 has-text-grey has-mr-7"># 相关文章</span><br><span>  1.<a class="is-size-6" href="/2021/06/11/other/php_parser/" target="_blank">php_parser</a><br></span><span>  2.<a class="is-size-6" href="/2020/01/20/code/php/php_021_src-phpini/" target="_blank">php[021]:关于phpini加载相对路径(php源码)</a><br></span><span>  3.<a class="is-size-6" href="/2020/01/15/code/php/php_020_php-config/" target="_blank">PHP[020]:--with-php-config</a><br></span><span>  4.<a class="is-size-6" href="/2019/12/10/code/php/z_2019_12_09%E6%9D%82%E8%B0%88/" target="_blank">2019_12_09_隐藏X-Powered-By:xxx</a><br></span><span>  5.<a class="is-size-6" href="/2019/07/01/code/php/php_000_link/" target="_blank">PHP[000]:书本杂志</a><br></span><span>  6.<a class="is-size-6" href="/2019/03/19/code/php/php_018_BitMap/" target="_blank">PHP[018]:BitMap</a><br></span><span>  7.<a class="is-size-6" href="/2019/03/19/code/php/php_019_RabbitMq/" target="_blank">PHP[018]:RabbitMq</a><br></span><span>  8.<a class="is-size-6" href="/2019/03/18/code/php/php_017_EventLister/" target="_blank">PHP[017]:事件监听</a><br></span></div></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P16-php%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9C/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">PHP[入门]P16-php中数据库的操作</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/01/01/code/php/php-%E5%85%A5%E9%97%A8/P14-mysql%E5%9F%BA%E7%A1%80/"><span class="level-item">PHP[入门]P14-mysql基础</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--><div class="card"><div class="card-content"><div class="title is-5">评论</div><div id="comment-container"></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/gitalk/1.6.0/gitalk.css"><script> $.getScript('/js/gitalk.min.js', function () { 
+            var gitalk = new Gitalk({
+            language:'zh-CN',
+            id: '8808517c92b3413f7a9b4d2e3ebc7d7f',
+            repo: 'blog_comment',
+            owner: 'hzjoyous',
+            clientID: '0f9c9cf415e0cff92319',
+            clientSecret: 'dbb2be3127b4be2117db6d1e761d7d89d90896a2',
+            admin: ["hzjoyous"],
+            createIssueManually: true,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: 'last',
+            
+            
+            enableHotKey: true,
+            isLocked: false
+        })
+        gitalk.render('comment-container')});</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><!--!--><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/images/theme/avatar2.jpg" alt="nil"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">nil</p><p class="is-size-6 is-block">nil is null , null is nil</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>天朝</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">129</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">33</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/hzjoyous" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/hzjoyous"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="/hzjmessage@outlook.com"><i class="fa fa-envelope"></i></a></div><div><hr><p id="hitokoto">:D 一言句子获取中...</p><script type="text/javascript" defer>function getYiyan(){
+                                $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                                if(data){
+                                    $('#hitokoto').html("");
+                                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                                    "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                                }});}
+                                $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});</script></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li><li><a class="level is-mobile" href="https://hzjoyous.gitee.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">hzjoyous.gitee.io</span></span><span class="level-right"><span class="level-item tag">hzjoyous.gitee.io</span></span></a></li><li><a class="level is-mobile" href="https://blog.csdn.net/qq_15539917" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">LX</span></span><span class="level-right"><span class="level-item tag">blog.csdn.net</span></span></a></li><li><a class="level is-mobile" href="https://clarence888.github.io/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">小二的CodingLife</span></span><span class="level-right"><span class="level-item tag">clarence888.github.io</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新评论</h3><span class="body_hot_comment">加载中，最新评论有1分钟缓存...</span></div></div><div class="card widget"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-20T17:25:12.000Z">2021-06-21</time></p><p class="title"><a href="/2021/06/21/amazing_tool/hot_to_see/">my awesome</a></p><p class="categories"><a href="/categories/HowToUse/">HowToUse</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-06-16T22:27:06.000Z">2021-06-17</time></p><p class="title"><a href="/2021/06/17/code/php/php_026_xhprof/">php[026]性能分析xhprof</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2021/06/11/other/php_parser/"><img src="/images/2021/岁月的童话2.jpg" alt="php_parser"></a></figure><div class="media-content"><p class="date"><time dateTime="2021-06-11T08:18:10.000Z">2021-06-11</time></p><p class="title"><a href="/2021/06/11/other/php_parser/">php_parser</a></p><p class="categories"><a href="/categories/php/">php</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T14:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_025_composerforyou/">php[025]发布composer</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-05-17T13:14:00.000Z">2021-05-17</time></p><p class="title"><a href="/2021/05/17/code/php/php_024_%E7%94%9F%E6%88%90%E5%99%A8/">php[024]生成器</a></p><p class="categories"><a href="/categories/other/">other</a></p></div></article></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/categories/HowToUse/"><span class="level-start"><span class="level-item">HowToUse</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/c/"><span class="level-start"><span class="level-item">c</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/knowledge/"><span class="level-start"><span class="level-item">knowledge</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/other/"><span class="level-start"><span class="level-item">other</span></span><span class="level-end"><span class="level-item tag">24</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/php/"><span class="level-start"><span class="level-item">php</span></span><span class="level-end"><span class="level-item tag">63</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/tool/"><span class="level-start"><span class="level-item">tool</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/uwp/"><span class="level-start"><span class="level-item">uwp</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/web/"><span class="level-start"><span class="level-item">web</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile is-marginless" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="level-start"><span class="level-item">随笔</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile is-marginless" href="/archives/2021/06/"><span class="level-start"><span class="level-item">六月 2021</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/05/"><span class="level-start"><span class="level-item">五月 2021</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/03/"><span class="level-start"><span class="level-item">三月 2021</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2021/01/"><span class="level-start"><span class="level-item">一月 2021</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile is-marginless" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><a class="level is-mobile is-marginless" href="/archives/"><span class="level-start"><span class="level-item">查看全部&gt;&gt;</span></span></a></ul></div></div></div><div class="card widget"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/php/"><span class="tag">php</span><span class="tag is-grey-lightest">69</span></a></div><div class="control"><a class="tags has-addons" href="/tags/other/"><span class="tag">other</span><span class="tag is-grey-lightest">21</span></a></div><div class="control"><a class="tags has-addons" href="/tags/js/"><span class="tag">js</span><span class="tag is-grey-lightest">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c</span><span class="tag is-grey-lightest">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/blog/"><span class="tag">blog</span><span class="tag is-grey-lightest">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tool/"><span class="tag">tool</span><span class="tag is-grey-lightest">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/c/"><span class="tag">c#</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/uwp/"><span class="tag">uwp</span><span class="tag is-grey-lightest">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/web/"><span class="tag">web</span><span class="tag is-grey-lightest">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/win/"><span class="tag">win</span><span class="tag is-grey-lightest">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/DayDayUp/"><span class="tag">DayDayUp</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Network-protocol/"><span class="tag">Network protocol</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vargrant/"><span class="tag">Vargrant</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bash/"><span class="tag">bash</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bison/"><span class="tag">bison</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/book/"><span class="tag">book</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/database/"><span class="tag">database</span><span class="tag is-grey-lightest">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag is-grey-lightest">1</span></a></div></div><div class="field is-grouped is-grouped-multiline"><a class="tags has-addons" href="/tags/"><span class="tag">查看全部&gt;&gt;</span></a></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><!--!--><div class="column-right-shadow is-hidden-widescreen"></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/images/theme/logo.png" alt="吱~" height="28"></a><p class="size-small"><span>&copy; 2021 hzjoyous</span>  Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a> &amp; <a href="https://github.com/removeif/hexo-theme-amazing" target="_blank">Amazing</a> <br><span>© 版权说明：[本网站所有内容均收集于互联网或自己创作,<br />&nbsp;&nbsp;&nbsp;&nbsp;方便于网友与自己学习交流，如有侵权，请<a href="/message" target="_blank">留言</a>，立即处理]<br /></span><span><span id="statistic-times">loading...</span><script>function createTime(time) {
+            var n = new Date(time);
+            now.setTime(now.getTime() + 250),
+                days = (now - n) / 1e3 / 60 / 60 / 24,
+                dnum = Math.floor(days),
+                hours = (now - n) / 1e3 / 60 / 60 - 24 * dnum,
+                hnum = Math.floor(hours),
+            1 == String(hnum).length && (hnum = "0" + hnum),
+                minutes = (now - n) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
+                mnum = Math.floor(minutes),
+            1 == String(mnum).length && (mnum = "0" + mnum),
+                seconds = (now - n) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
+                snum = Math.round(seconds),
+            1 == String(snum).length && (snum = "0" + snum),
+                document.getElementById("statistic-times").innerHTML = "❤️本站自 <strong>"+time.split(" ")[0].replace(/\//g,".")+"</strong> 已运行 <strong>" + dnum + "</strong> 天 <strong>" + hnum + "</strong> 小时 <strong>" + mnum + "</strong> 分 <strong>" + snum + "</strong> 秒！❤️";
+        }var now = new Date();setInterval("createTime('2017/06/11 00:00:00')", 250,"");</script><br></span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/removeif/hexo-theme-amazing"><i class="fab fa-github"></i></a></p></div><div class="sideMusic"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="/js/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><meting-js style="width: auto;height: 2000px;" server="netease" type="playlist" id="557690471" theme="#2980b9" loop="all" autoplay="false" order="list" storageName="aplayer-setting" lrctype="0" list-max-height="400px" fixed="true"></meting-js></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script>$.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);})</script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script><script type="text/javascript">var pjax = new Pjax({
+            elements: "a",//代表点击链接就更新
+            selectors: [  //代表要更新的节点
+                ".section",
+                "title"
+            ],
+            cache: true,
+            cacheBust:false
+        })
+
+        function loadBusuanzi(){
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", function () {});
+        }
+
+        // 开始 PJAX 执行的函数
+        document.addEventListener('pjax:send', function () {
+        });
+        
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+        document.addEventListener('pjax:complete', function () {
+            $(".section").css({opacity:1});
+            if(true){
+                $.getScript('/js/comment-issue-data.js',function(){loadIssueData('0f9c9cf415e0cff92319','dbb2be3127b4be2117db6d1e761d7d89d90896a2','hzjoyous','blog_comment',false);});
+            }
+            if(false){
+                loadMathJax();
+            }
+            loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+            loadBackTop();
+            loadBusuanzi();
+            if(typeof loadBanner == 'function'){
+                loadBanner();
+            }
+        });</script></body></html>
